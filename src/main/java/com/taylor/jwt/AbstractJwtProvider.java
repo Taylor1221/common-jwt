@@ -28,6 +28,12 @@ public abstract class AbstractJwtProvider implements JwtProvider, InitializingBe
 
     private JWTVerifier verifier;
 
+    /**
+     * 允许子类定制不同的签名算法
+     * @author loveCamille
+     * @param jwtProperties jwt配置
+     * @return {@link Algorithm} 签名算法
+    */
     protected abstract Algorithm buildAlgorithm(JwtProperties jwtProperties);
 
     @Override
