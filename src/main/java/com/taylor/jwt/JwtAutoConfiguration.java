@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class JwtAutoConfiguration {
 
     @Bean
-    @ConditionalOnMissingBean(JwtProperties.class)
+    @ConditionalOnMissingBean(JwtProvider.class)
     public JwtProvider jwtProvider() {
         return new DefaultJwtProvider();
     }
