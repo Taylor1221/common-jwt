@@ -1,0 +1,17 @@
+{
+  "properties": [
+    {
+      "name": "common.jwt.secret-key",
+      "type": "java.lang.String",
+      "description": "JWT 密钥，用于生成和验证 JWT 令牌.",
+      "sourceType": "com.taylor.jwt.JwtProperties"
+    },
+
+    {
+      "name": "common.jwt.expire-time",
+      "type": "java.time.Duration",
+      "deprecation": "JWT 令牌的有效期，支持时间单位如 30m, 1h, 1d",
+      "sourceType": "com.taylor.jwt.JwtProperties"
+    }
+  ]
+}
