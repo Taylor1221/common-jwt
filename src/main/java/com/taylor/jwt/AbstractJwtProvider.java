@@ -43,9 +43,9 @@ public abstract class AbstractJwtProvider implements JwtProvider, InitializingBe
     }
 
     @Override
-    public String generateToken(Long userId) {
+    public String generateToken(String username) {
         JWTCreator.Builder builder = JWT.create()
-                .withSubject(userId.toString()) // 设置用户名
+                .withSubject(username) // 设置用户名
                 .withIssuedAt(new Date()); // 签发时间
         if (jwtProperties.getExpireTime() != null) {
             // 设置过期时间
@@ -65,8 +65,8 @@ public abstract class AbstractJwtProvider implements JwtProvider, InitializingBe
     }
 
     @Override
-    public Long getUserId(String token) {
+    public String getUsername(String token) {
         DecodedJWT decodedJWT = verifier.verify(token);
-        return Long.valueOf(decodedJWT.getSubject());
+        return decodedJWT.getSubject();
     }
 }

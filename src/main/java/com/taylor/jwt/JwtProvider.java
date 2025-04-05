@@ -11,27 +11,27 @@ import org.springframework.lang.NonNull;
 public interface JwtProvider {
 
     /**
-     * 根据用户id生成 token
+     * 根据username生成 token
      * @author loveCamille
-     * @param userId 用户id
+     * @param username 用户名
      * @return {@link String} token
     */
-    String generateToken(@NonNull Long userId);
+    String generateToken(@NonNull String username);
 
     /**
      * 校验token
      * @author loveCamille
-     * @param token token令牌
+     * @param username 用户名
      * @return 校验是否成功
     */
-    boolean validateToken(@NonNull String token);
+    boolean validateToken(@NonNull String username);
 
     /**
      * 根据token解析用户Id
      * @author loveCamille
      * @param token token令牌
-     * @return {@link Long} 用户id
+     * @return {@link String} 用户名
     */
-    Long getUserId(@NonNull String token);
+    String getUsername(@NonNull String token);
 
 }
