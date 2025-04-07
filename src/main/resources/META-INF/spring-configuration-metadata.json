@@ -1,4 +1,11 @@
 {
+  "groups": [
+    {
+      "name": "common.jwt",
+      "type": "com.taylor.common.jwt.JwtProperties",
+      "sourceType": "com.taylor.common.jwt.JwtProperties"
+    }
+  ],
   "properties": [
     {
       "name": "common.jwt.secret-key",

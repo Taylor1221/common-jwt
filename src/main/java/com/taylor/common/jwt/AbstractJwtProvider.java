@@ -6,8 +6,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.util.Date;
@@ -18,15 +16,17 @@ import java.util.Date;
  * @author loveCamille
  * @date 2025-04-03 15:43:51
  */
-@Getter
 public abstract class AbstractJwtProvider implements JwtProvider, InitializingBean {
 
-    @Setter
-    protected JwtProperties jwtProperties;
+    protected final JwtProperties jwtProperties;
 
     private Algorithm algorithm;
 
     private JWTVerifier verifier;
+
+    public AbstractJwtProvider(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
 
     /**
      * 允许子类定制不同的签名算法

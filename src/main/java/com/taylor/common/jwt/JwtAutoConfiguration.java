@@ -17,8 +17,8 @@ public class JwtAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(JwtProvider.class)
-    public JwtProvider jwtProvider() {
-        return new DefaultJwtProvider();
+    public JwtProvider jwtProvider(JwtProperties jwtProperties) {
+        return new DefaultJwtProvider(jwtProperties);
     }
 
 }

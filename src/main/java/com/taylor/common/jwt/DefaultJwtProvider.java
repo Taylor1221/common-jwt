@@ -9,6 +9,10 @@ import com.auth0.jwt.algorithms.Algorithm;
  */
 public class DefaultJwtProvider extends AbstractJwtProvider {
 
+    public DefaultJwtProvider(JwtProperties jwtProperties) {
+        super(jwtProperties);
+    }
+
     @Override
     protected Algorithm buildAlgorithm(JwtProperties jwtProperties) {
         return Algorithm.HMAC256(jwtProperties.getSecretKey());
