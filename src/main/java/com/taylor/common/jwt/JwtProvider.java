@@ -1,4 +1,4 @@
-package com.taylor.jwt;
+package com.taylor.common.jwt;
 
 import org.springframework.lang.NonNull;
 
@@ -27,7 +27,7 @@ public interface JwtProvider {
     boolean validateToken(@NonNull String username);
 
     /**
-     * 根据token解析用户Id
+     * 根据token解析用户名
      * @author loveCamille
      * @param token token令牌
      * @return {@link String} 用户名

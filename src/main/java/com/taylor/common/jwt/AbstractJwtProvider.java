@@ -1,4 +1,4 @@
-package com.taylor.jwt;
+package com.taylor.common.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;

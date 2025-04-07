@@ -1,4 +1,4 @@
-package com.taylor.jwt;
+package com.taylor.common.jwt;
 
 import lombok.Getter;
 import lombok.Setter;

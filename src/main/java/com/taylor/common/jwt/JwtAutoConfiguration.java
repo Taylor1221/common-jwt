@@ -1,4 +1,4 @@
-package com.taylor.jwt;
+package com.taylor.common.jwt;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

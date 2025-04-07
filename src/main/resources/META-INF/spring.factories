@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.taylor.jwt.JwtAutoConfiguration
+com.taylor.common.jwt.JwtAutoConfiguration

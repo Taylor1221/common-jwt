@@ -1,4 +1,4 @@
-package com.taylor.jwt;
+package com.taylor.common.jwt;
 
 import com.auth0.jwt.algorithms.Algorithm;
 
