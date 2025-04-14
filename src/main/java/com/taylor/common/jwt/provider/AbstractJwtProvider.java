@@ -1,4 +1,4 @@
-package com.taylor.common.jwt;
+package com.taylor.common.jwt.provider;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
@@ -6,6 +6,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.taylor.common.jwt.JwtProperties;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.util.Date;

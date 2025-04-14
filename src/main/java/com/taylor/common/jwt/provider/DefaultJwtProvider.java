@@ -1,6 +1,7 @@
-package com.taylor.common.jwt;
+package com.taylor.common.jwt.provider;
 
 import com.auth0.jwt.algorithms.Algorithm;
+import com.taylor.common.jwt.JwtProperties;
 
 /**
  * 默认JWT提供

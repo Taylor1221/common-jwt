@@ -1,4 +1,4 @@
-package com.taylor.common.jwt;
+package com.taylor.common.jwt.provider;
 
 import org.springframework.lang.NonNull;
 
