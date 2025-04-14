@@ -1,10 +1,9 @@
 package com.taylor.common.jwt.manager;
 
-import java.time.Duration;
 
 public interface JwtTokenManager {
 
-    void put(String username, String jwtToken, Duration duration);
+    void put(String username, String jwtToken);
 
     void remove(String username);
 

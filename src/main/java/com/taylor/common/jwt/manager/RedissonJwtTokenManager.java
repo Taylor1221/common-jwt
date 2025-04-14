@@ -1,9 +1,8 @@
 package com.taylor.common.jwt.manager;
 
+import com.taylor.common.jwt.JwtProperties;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.time.Duration;
 
 /**
  * Redisson实现
@@ -16,11 +15,14 @@ public class RedissonJwtTokenManager implements JwtTokenManager {
     private static final String JWT_TOKEN_KEY = "common:user:token:";
 
     @Autowired
+    private JwtProperties jwtProperties;
+
+    @Autowired
     private RedissonClient redisson;
 
     @Override
-    public void put(String username, String jwtToken, Duration duration) {
-        redisson.getBucket(JWT_TOKEN_KEY + username).set(jwtToken, duration);
+    public void put(String username, String jwtToken) {
+        redisson.getBucket(JWT_TOKEN_KEY + username).set(jwtToken, jwtProperties.getExpireTime());
     }
 
     @Override
