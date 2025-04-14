@@ -21,6 +21,11 @@ public class InMemoryJwtTokenManager implements JwtTokenManager {
     private JwtProperties jwtProperties;
 
     @Override
+    public String getJwtToken(String username) {
+        return cache.get(username, false);
+    }
+
+    @Override
     public void put(String username, String jwtToken) {
         cache.put(username, jwtToken, jwtProperties.getExpireTime().toMillis());
     }

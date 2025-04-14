@@ -21,6 +21,11 @@ public class RedissonJwtTokenManager implements JwtTokenManager {
     private RedissonClient redisson;
 
     @Override
+    public String getJwtToken(String username) {
+        return redisson.getBucket(JWT_TOKEN_KEY + username).get().toString();
+    }
+
+    @Override
     public void put(String username, String jwtToken) {
         redisson.getBucket(JWT_TOKEN_KEY + username).set(jwtToken, jwtProperties.getExpireTime());
     }
