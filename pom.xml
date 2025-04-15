@@ -27,6 +27,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.taylor.common</groupId>
+            <artifactId>common-base</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>

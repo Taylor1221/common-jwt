@@ -2,7 +2,7 @@ package com.taylor.common.jwt;
 
 import com.taylor.common.jwt.manager.InMemoryJwtTokenManager;
 import com.taylor.common.jwt.manager.JwtTokenManager;
-import com.taylor.common.jwt.manager.RedissonJwtTokenManager;
+import com.taylor.common.jwt.manager.RedisJwtTokenManager;
 import com.taylor.common.jwt.provider.DefaultJwtProvider;
 import com.taylor.common.jwt.provider.JwtProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -33,16 +33,16 @@ public class JwtAutoConfiguration {
     public static class JwtTokenManagerConfiguration {
 
         @Bean
-        public JwtTokenManager jwtTokenManager() {
-            return new RedissonJwtTokenManager();
+        public JwtTokenManager jwtTokenManager(JwtProperties jwtProperties) {
+            return new RedisJwtTokenManager(jwtProperties.getExpireTime());
         }
 
     }
 
     @Bean
     @ConditionalOnMissingBean(JwtTokenManager.class)
-    public JwtTokenManager jwtTokenManager() {
-        return new InMemoryJwtTokenManager();
+    public JwtTokenManager jwtTokenManager(JwtProperties jwtProperties) {
+        return new InMemoryJwtTokenManager(jwtProperties.getExpireTime());
     }
 
 }

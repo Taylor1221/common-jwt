@@ -1,9 +1,7 @@
 package com.taylor.common.jwt.manager;
 
 import cn.hutool.cache.CacheUtil;
-import cn.hutool.cache.impl.TimedCache;
-import com.taylor.common.jwt.JwtProperties;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.taylor.common.base.cache.InMemoryTimedCache;
 
 import java.time.Duration;
 
@@ -13,30 +11,10 @@ import java.time.Duration;
  * @author loveCamille
  * @date 2025-04-14 10:12:48
  */
-public class InMemoryJwtTokenManager implements JwtTokenManager {
+public class InMemoryJwtTokenManager extends InMemoryTimedCache<String, String> implements JwtTokenManager {
 
-    private final TimedCache<String, String> cache = CacheUtil.newTimedCache(Duration.ofDays(7).toMillis());
-
-    @Autowired
-    private JwtProperties jwtProperties;
-
-    @Override
-    public String getJwtToken(String username) {
-        return cache.get(username, false);
+    public InMemoryJwtTokenManager(Duration timeout) {
+        super(CacheUtil.newTimedCache(timeout.toMillis()));
     }
 
-    @Override
-    public void put(String username, String jwtToken) {
-        cache.put(username, jwtToken, jwtProperties.getExpireTime().toMillis());
-    }
-
-    @Override
-    public void remove(String username) {
-        cache.remove(username);
-    }
-
-    @Override
-    public boolean contains(String username) {
-        return cache.containsKey(username);
-    }
 }

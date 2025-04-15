@@ -1,9 +1,11 @@
 package com.taylor.common.jwt.manager;
 
 
-public interface JwtTokenManager {
+import com.taylor.common.base.cache.ICommonTimedCache;
 
-    String getJwtToken(String username);
+public interface JwtTokenManager extends ICommonTimedCache<String, String> {
+
+    String get(String username);
 
     void put(String username, String jwtToken);
 
