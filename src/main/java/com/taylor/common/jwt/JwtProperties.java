@@ -17,10 +17,19 @@ import java.time.Duration;
 @ConfigurationProperties(prefix = "common.jwt")
 public class JwtProperties {
 
+    /**
+     * 密钥
+     */
     private String secretKey;
 
+    /**
+     * 过期时间，比如 30天后 过期 Duration.ofDays(30)
+     */
     private Duration expireTime;
 
-    private Duration renewThreshold = Duration.ofDays(30);
+    /**
+     * 刷新阈值，距离过期时间不到 renewThreshold 时，刷新token
+     */
+    private Duration renewThreshold = Duration.ofDays(1);
 
 }
