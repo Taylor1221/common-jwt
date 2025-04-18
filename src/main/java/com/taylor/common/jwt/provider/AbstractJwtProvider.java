@@ -1,5 +1,6 @@
 package com.taylor.common.jwt.provider;
 
+import cn.hutool.core.date.DateUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.JWTVerifier;
@@ -9,6 +10,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.taylor.common.jwt.JwtProperties;
 import org.springframework.beans.factory.InitializingBean;
 
+import java.time.Duration;
 import java.util.Date;
 
 /**
@@ -45,12 +47,13 @@ public abstract class AbstractJwtProvider implements JwtProvider, InitializingBe
 
     @Override
     public String generateToken(String username) {
+        Date now = new Date();
         JWTCreator.Builder builder = JWT.create()
                 .withSubject(username) // 设置用户名
-                .withIssuedAt(new Date()); // 签发时间
+                .withIssuedAt(now); // 签发时间
         if (jwtProperties.getExpireTime() != null) {
             // 设置过期时间
-            builder.withExpiresAt(new Date(System.currentTimeMillis() + jwtProperties.getExpireTime().toMillis()));
+            builder.withExpiresAt(DateUtil.offsetMillisecond(now, (int) jwtProperties.getExpireTime().toMillis()));
         }
         return builder.sign(algorithm);
     }
@@ -69,5 +72,13 @@ public abstract class AbstractJwtProvider implements JwtProvider, InitializingBe
     public String getUsername(String token) {
         DecodedJWT decodedJWT = verifier.verify(token);
         return decodedJWT.getSubject();
+    }
+
+    @Override
+    public boolean isAboutExpired(String token) {
+        long remain = verifier.verify(token).getExpiresAt().getTime() - System.currentTimeMillis();
+        Duration renewThreshold = jwtProperties.getRenewThreshold();
+        if (null == renewThreshold) return false;
+        return remain > 0 && remain < renewThreshold.toMillis();
     }
 }

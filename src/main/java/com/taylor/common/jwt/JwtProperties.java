@@ -21,4 +21,6 @@ public class JwtProperties {
 
     private Duration expireTime;
 
+    private Duration renewThreshold = Duration.ofDays(30);
+
 }

@@ -34,4 +34,12 @@ public interface JwtProvider {
     */
     String getUsername(@NonNull String token);
 
+    /**
+     * 是否要过期
+     * @author 34323
+     * @param token
+     * @return {@link boolean}
+     */
+    boolean isAboutExpired(@NonNull String token);
+
 }
